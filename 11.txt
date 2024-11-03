@@ -1,0 +1,75 @@
+-- Step 1: Create the Student Table and Insert Data
+-- Create the student table
+CREATE TABLE student (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT,
+    grade FLOAT,
+    major VARCHAR(50)
+);
+
+-- Insert sample data
+INSERT INTO student (id, name, age, grade, major) VALUES
+(1, 'Alice', 20, 85.5, 'Computer Science'),
+(2, 'Bob', 22, 90.0, 'Mathematics'),
+(3, 'Charlie', 21, 78.2, 'Physics'),
+(4, 'David', 23, 92.1, 'Computer Science'),
+(5, 'Eve', 20, 88.9, 'Mathematics'),
+(6, 'Frank', 24, 76.5, 'Biology'),
+(7, 'Grace', 22, 83.2, 'Computer Science'),
+(8, 'Hannah', 23, 87.3, 'Mathematics'),
+(9, 'Ian', 21, 68.4, 'Physics'),
+(10, 'Jack', 20, 92.7, 'Chemistry');
+
+
+-- Step 2: ALTER Table
+-- Add a new attribute (e.g., email column):
+ALTER TABLE student
+ADD COLUMN email VARCHAR(100);
+
+-- Modify data type of an existing attribute (e.g., change grade to DECIMAL type):
+ALTER TABLE student
+MODIFY COLUMN grade DECIMAL(5, 2);
+
+-- Drop an attribute (e.g., email column):
+ALTER TABLE student
+DROP COLUMN email;
+
+
+-- Step 3: UPDATE Table
+-- Update the grade of a student with id 1
+UPDATE student
+SET grade = 89.5
+WHERE id = 1;
+
+
+-- Step 4: ORDER BY
+-- Order by grade in ascending order:
+SELECT * FROM student
+ORDER BY grade ASC;
+
+-- Order by age in descending order:
+SELECT * FROM student
+ORDER BY age DESC;
+
+
+-- Step 5: DELETE
+-- Delete a specific student by ID:
+DELETE FROM student
+WHERE id = 5;
+
+-- Delete all students in the Mathematics major:
+DELETE FROM student
+WHERE major = 'Mathematics';
+
+
+-- Step 6: GROUP BY with Aggregate Functions
+-- Find the minimum, maximum, sum, count, and average grade for each major
+SELECT major,
+       MIN(grade) AS min_grade,
+       MAX(grade) AS max_grade,
+       SUM(grade) AS total_grade,
+       COUNT(*) AS student_count,
+       AVG(grade) AS average_grade
+FROM student
+GROUP BY major;
